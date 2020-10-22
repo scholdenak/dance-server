@@ -34,7 +34,18 @@ def go_to_homepage():
 
     return render_template('homepage.html')
 
+@app.route('/get-name')
+def session_get_name():
 
+    name = request.args.get('name')
+    session['name'] = name
+    return redirect('/step-two')
+
+@app.route('/step-two')
+def pull_up_page_two():
+
+    return render_template('base-temp.html',
+                            name=session['name'])
 
 
 
